@@ -1,0 +1,11 @@
+MySQL:
+  SSL: False
+  Host: "localhost"
+  Port: "3306"
+  Database: "database"
+  User: "root"
+  Password: ""
+
+Maintenance: True
+Permission: bansystem.maintenance
+Message: "&eNovusMC &8» &7Der Server befindet sich in &cWartungsarbeiten&7."

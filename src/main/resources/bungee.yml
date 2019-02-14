@@ -1,0 +1,23 @@
+name: BanSystem
+version: 1.0
+author: GodTitan
+main: de.godtitan.bansystem.bungee.BungeeBanSystem
+
+commands:
+  broadcast:
+  bc:
+  banlog:
+  ban:
+  forum:
+  ping:
+  reportbungee:
+  joinme:
+  teamchat:
+  tc:
+  ts:
+  unban:
+  kick:
+  pardon:
+  youtube:
+  yt:
+  youtuber:
