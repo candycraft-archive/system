@@ -1,7 +1,6 @@
 package de.godtitan.bansystem.bungee.command;
 
 import de.godtitan.bansystem.bungee.BungeeBanSystem;
-import de.godtitan.bansystem.common.util.HashGenerator;
 import de.godtitan.bansystem.common.util.Messages;
 import de.godtitan.bansystem.common.util.MuteInfo;
 import net.md_5.bungee.api.CommandSender;
@@ -92,7 +91,7 @@ public class MuteCommand extends Command {
             plugin.getMuteTable().mute(uuid, mutedBy, time, (muteId, secretKey) -> {
                 MuteInfo info = new MuteInfo(uuid, muteId, finalTime, finalMutedBy);
                 plugin.getMutes().add(info);
-                sender.sendMessage(TextComponent.fromLegacyText(Messages.BAN_PREFIX + "§cGeheimer Schlüssel: §e" + secretKey + "§8(md5: " + HashGenerator.generateHexMd5Hash(secretKey)));
+                //sender.sendMessage(TextComponent.fromLegacyText(Messages.BAN_PREFIX + "§cGeheimer Schlüssel: §e" + secretKey + "§8(md5: " + HashGenerator.generateHexMd5Hash(secretKey)));
             });
 
             String selfMessage = Messages.BAN_PREFIX + "§cDu wurdest";
