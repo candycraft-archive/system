@@ -2,10 +2,7 @@ package de.godtitan.bansystem.spigot;
 
 import de.godtitan.bansystem.spigot.command.*;
 import de.godtitan.bansystem.spigot.inventory.ReportInventory;
-import de.godtitan.bansystem.spigot.listener.PlayerCommandPreprocessListener;
-import de.godtitan.bansystem.spigot.listener.PlayerJoinListener;
-import de.godtitan.bansystem.spigot.listener.PlayerLoginListener;
-import de.godtitan.bansystem.spigot.listener.PlayerQuitListener;
+import de.godtitan.bansystem.spigot.listener.*;
 import de.godtitan.bansystem.spigot.util.PluginMessageListener;
 import lombok.Getter;
 import org.bukkit.ChatColor;
@@ -61,8 +58,7 @@ public class SpigotBanSystem extends JavaPlugin {
         new PlayerQuitListener(this);
         new PlayerLoginListener(this);
         new PluginMessageListener(this);
-        new FlyCommand(this);
-
+        new TabCompleteListener(this);
     }
 
     private YamlConfiguration copyAndLoad(String resource, File file) {

@@ -106,6 +106,8 @@ public class BungeeBanSystem extends Plugin implements Listener {
         new KickCommand(this);
         new YoutubeCommand(this);
         new UnbanCommand(this);
+        new CandyShopCommand(this);
+        new DiscordCommand(this);
 
         new ProxyPingListener(this);
         new PlayerDisconnectListener(this);

@@ -30,6 +30,17 @@ public class PostLoginListener implements Listener {
 
     @EventHandler
     public void onPostLogin(PostLoginEvent event) {
+        ProxiedPlayer player = event.getPlayer();
+        player.sendMessage(TextComponent.fromLegacyText("§f§m  §c§m  §f§m  §c§m  §f§m  §c§m  §f§m  §c§m  §f§m  §c§m  §f§m  §c§m  §f§m  §c§m  §f§m  §c§m  §f§m  §c§m  §f§m  §c§m  §f§m  §c§m  §f§m  §c§m  §f§m  §c§m  §f§m  §c§m  §f§m  "));
+        player.sendMessage(TextComponent.fromLegacyText(" "));
+        player.sendMessage(TextComponent.fromLegacyText("§7Hallo §c§l" + player.getName() + "§7 und willkommen auf §d§lCandyCraft§7!"));
+        player.sendMessage(TextComponent.fromLegacyText(" "));
+        player.sendMessage(TextComponent.fromLegacyText("§c§lSHOP§f http://shop.candycraft.de"));
+        player.sendMessage(TextComponent.fromLegacyText("§c§lDISCORD§f https://discord.gg/gae5E7J"));
+        player.sendMessage(TextComponent.fromLegacyText("§c§lTEAMSPEAK§f candycraft.de"));
+        player.sendMessage(TextComponent.fromLegacyText(" "));
+        player.sendMessage(TextComponent.fromLegacyText("§f§m  §c§m  §f§m  §c§m  §f§m  §c§m  §f§m  §c§m  §f§m  §c§m  §f§m  §c§m  §f§m  §c§m  §f§m  §c§m  §f§m  §c§m  §f§m  §c§m  §f§m  §c§m  §f§m  §c§m  §f§m  §c§m  §f§m  §c§m  §f§m  "));
+
         ProxyServer.getInstance().getScheduler().schedule(plugin, () -> {
             if (event.getPlayer() == null)
                 return;
