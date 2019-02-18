@@ -17,9 +17,19 @@
             <id>TimoCloud-API</id>
             <url>https://maven.timo.cloud/repository/TimoCloud-API/</url>
         </repository>
+        <repository>
+            <id>dmulloy2-repo</id>
+            <url>http://repo.dmulloy2.net/content/groups/public/</url>
+        </repository>
     </repositories>
 
     <dependencies>
+
+        <dependency>
+            <groupId>com.comphenix.protocol</groupId>
+            <artifactId>ProtocolLib-API</artifactId>
+            <version>4.2.1</version>
+        </dependency>
 
         <dependency>
             <groupId>ru.tehkode</groupId>

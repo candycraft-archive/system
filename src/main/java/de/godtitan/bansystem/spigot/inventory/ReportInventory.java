@@ -35,7 +35,7 @@ public class ReportInventory implements Listener {
     private static final List<String> LORE = Arrays.asList("§8§m                              ", " ", "§8● §7Klicke zum auswählen §8●", " ", "§8§m                              ");
     private static final ItemStack BLACK_GLASS = new ItemBuilder(Material.STAINED_GLASS_PANE, (short) 15).setDisplayName(" ").build();
     private static final ItemStack WHITE_GLASS = new ItemBuilder(Material.STAINED_GLASS_PANE).setDisplayName(" ").build();
-    private static final ItemStack REPORT = new ItemBuilder(Material.BARRIER).setDisplayName("§e§lNovus§6§lMC§8.§ede §8| §ecReport").build();
+    private static final ItemStack REPORT = new ItemBuilder(Material.BARRIER).setDisplayName("§d§lCandyCraft.de§8 | §ecReport").build();
     private static final ItemStack SEND = new ItemBuilder(Material.INK_SACK, (short) 10).setDisplayName("§8» §aBestätigen").build();
 
     private SpigotBanSystem plugin;

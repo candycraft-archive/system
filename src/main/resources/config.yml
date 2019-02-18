@@ -8,4 +8,4 @@ MySQL:
 
 Maintenance: True
 Permission: bansystem.maintenance
-Message: "&eNovusMC &8» &7Der Server befindet sich in &cWartungsarbeiten&7."
+Message: "&dCandyCraft &8» &7Der Server befindet sich in &cWartungsarbeiten&7."

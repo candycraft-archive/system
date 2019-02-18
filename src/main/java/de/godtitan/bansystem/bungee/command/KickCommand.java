@@ -56,7 +56,7 @@ public class KickCommand extends Command {
             }
             builder.append(args[i]);
         }
-        String message = "§e§lNovus§6§lMC§8.§ede\n§cDu wurdest vom Netwerk §4gekickt§c!";
+        String message = "§d§lCandyCraft.de\n§cDu wurdest vom Netwerk §4gekickt§c!";
         if (builder.length() > 0) {
             message += "§c\n\nGrund:§r " + ChatColor.translateAlternateColorCodes('&', builder.toString());
         }
