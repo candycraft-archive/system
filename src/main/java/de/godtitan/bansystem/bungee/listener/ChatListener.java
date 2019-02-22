@@ -107,12 +107,12 @@ public class ChatListener implements Listener {
                 return;
             }
         }
-
+        /*
         String message = event.getMessage();
         for (String key : replacements.keySet()) {
             message = message.replaceAll("(?i)" + key, replacements.get(key));
         }
-        event.setMessage(message);
+        event.setMessage(message);*/
     }
 
 }
