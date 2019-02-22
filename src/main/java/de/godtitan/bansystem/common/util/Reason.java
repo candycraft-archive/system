@@ -12,13 +12,13 @@ import java.util.concurrent.TimeUnit;
  */
 public enum Reason {
 
-    HACKING("Hacking", TimeUnit.DAYS.toMillis(30), 1),
-    CHAT("Chatverhalten", TimeUnit.DAYS.toMillis(2), 2),
-    TEAMING("Teaming", TimeUnit.DAYS.toMillis(3), 3),
-    SPAWN_TRAPPING("Spawntrapping", TimeUnit.DAYS.toMillis(3), 4),
-    BUGUSING("Bugusing", TimeUnit.DAYS.toMillis(30), 5),
-    NAME("Name", TimeUnit.DAYS.toMillis(15), 6),
-    SKIN("Skin", TimeUnit.DAYS.toMillis(3), 7),
+    HACKING("Hacking (30 Tage)", TimeUnit.DAYS.toMillis(30), 1),
+    CHAT("Chatverhalten (3 Tage)", TimeUnit.DAYS.toMillis(2), 2),
+    TEAMING("Teaming (3 Tage)", TimeUnit.DAYS.toMillis(3), 3),
+    SPAWN_TRAPPING("Spawntrapping (3 Tage)", TimeUnit.DAYS.toMillis(3), 4),
+    BUGUSING("Bugusing (30 Tage)", TimeUnit.DAYS.toMillis(30), 5),
+    NAME("Name (15 Tage)", TimeUnit.DAYS.toMillis(15), 6),
+    SKIN("Skin (3 Tage)", TimeUnit.DAYS.toMillis(3), 7),
     MISC_30_MIN("Sonstiges (30 Minuten)", TimeUnit.MINUTES.toMillis(30), 8),
     MISC_2_HRS("Sonstiges (2 Stunden)", TimeUnit.HOURS.toMillis(2), 9),
     MISC_6_HRS("Sonstiges (6 Stunden)", TimeUnit.HOURS.toMillis(6), 10),
@@ -27,7 +27,7 @@ public enum Reason {
     MISC_30_DAYS("Sonstiges (30 Tage)", TimeUnit.DAYS.toMillis(30), 13),
     MISC_90_DAYS("Sonstiges (90 Tage)", TimeUnit.DAYS.toMillis(90), 14),
     MISC_PERM("Sonstiges (PERMANENT)", -1, 15),
-    GRIEFING("Scamming/Griefing", TimeUnit.DAYS.toMillis(5), 16);
+    GRIEFING("Scamming/Griefing (5 Tage)", TimeUnit.DAYS.toMillis(5), 16);
 
     @Getter
     private String reason;
