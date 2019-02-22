@@ -26,7 +26,8 @@ public enum Reason {
     MISC_15_DAYS("Sonstiges (15 Tage)", TimeUnit.DAYS.toMillis(15), 12),
     MISC_30_DAYS("Sonstiges (30 Tage)", TimeUnit.DAYS.toMillis(30), 13),
     MISC_90_DAYS("Sonstiges (90 Tage)", TimeUnit.DAYS.toMillis(90), 14),
-    MISC_PERM("Sonstiges (PERMANENT)", -1, 15);
+    MISC_PERM("Sonstiges (PERMANENT)", -1, 15),
+    GRIEFING("Scamming/Griefing", TimeUnit.DAYS.toMillis(5), 16);
 
     @Getter
     private String reason;

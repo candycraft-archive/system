@@ -54,9 +54,9 @@ public class LoginListener implements Listener {
                         endString = "Noch §e" + days + "§7 Tag" + (days != 1 ? "e" : "") + ", §e" + hours + "§7 Stunde" + (hours != 1 ? "n" : "") + ", §e" + minutes + "§7 Minute" + (minutes != 1 ? "n" : "");
                     }
 
-                    event.setCancelReason("§d§lCandyCane§7.§dde\n§7Du wurdest vom Server §cgebannt§7!\n" +
+                    event.setCancelReason("§d§lCandyCraft§7.§dde\n§7Du wurdest vom Server §cgebannt§7!\n" +
                             "\n§8§m                                                \n\n§eGrund §8» §c" + ban.getReason().getReason().split(" ")[0] + "\n§7"
-                            + endString + "\n\n§7Du kannst auf §e§nforum.candycane.de§r§7 einen Entbannungsantrag stellen.");
+                            + endString + "\n\n§7Du kannst auf §e§nforum.candycraft.de§r§7 einen Entbannungsantrag stellen.");
                     event.setCancelled(true);
 
                     event.completeIntent(plugin);
