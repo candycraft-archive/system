@@ -93,7 +93,8 @@ public class ChatListener implements Listener {
                 .replace(".", "")
                 .replace("_", "")
                 .replace(",", "")
-                .replace("-", "");
+                .replace("-", "")
+                .replace(" ", "");
 
         for (String badWord : badWords) {
             if (messageFiltered.contains(badWord.toLowerCase())) {
