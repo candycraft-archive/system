@@ -53,6 +53,7 @@ public class PostLoginListener implements Listener {
                 }
             }
         }, 100, TimeUnit.MILLISECONDS);
+        plugin.getPlaytimeTable().logJoin(player.getUniqueId());
     }
 
 }

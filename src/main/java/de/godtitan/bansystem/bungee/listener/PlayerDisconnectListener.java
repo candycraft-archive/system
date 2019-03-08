@@ -40,8 +40,8 @@ public class PlayerDisconnectListener implements Listener {
 
         if (plugin.getReport().isReporting(player.getName())) {
             plugin.getReport().setReporting(player.getName(), null);
-
         }
+        plugin.getPlaytimeTable().logDisconnect(player.getUniqueId());
     }
 
 }

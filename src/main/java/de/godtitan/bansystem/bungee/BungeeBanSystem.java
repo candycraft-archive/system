@@ -7,6 +7,7 @@ import de.godtitan.bansystem.common.data.MySQL;
 import de.godtitan.bansystem.common.data.table.BanLogTable;
 import de.godtitan.bansystem.common.data.table.BanTable;
 import de.godtitan.bansystem.common.data.table.MuteTable;
+import de.godtitan.bansystem.common.data.table.PlaytimeTable;
 import de.godtitan.bansystem.common.util.MuteInfo;
 import de.pauhull.uuidfetcher.bungee.BungeeUUIDFetcher;
 import lombok.Getter;
@@ -42,6 +43,9 @@ public class BungeeBanSystem extends Plugin implements Listener {
 
     @Getter
     private Configuration config;
+
+    @Getter
+    private PlaytimeTable playtimeTable;
 
     @Getter
     private BanTable banTable;
@@ -90,6 +94,7 @@ public class BungeeBanSystem extends Plugin implements Listener {
         this.muteTable = new MuteTable(mySQL, executorService);
         this.banLogTable = new BanLogTable(mySQL, executorService);
         this.banTable = new BanTable(mySQL, executorService, banLogTable);
+        this.playtimeTable = new PlaytimeTable(mySQL, executorService);
 
         new BanLogCommand(this);
         new BroadcastCommand(this);
@@ -109,6 +114,7 @@ public class BungeeBanSystem extends Plugin implements Listener {
         new CandyShopCommand(this);
         new DiscordCommand(this);
         new GotoCommand(this);
+        new PlaytimeCommand(this);
 
         new ProxyPingListener(this);
         new PlayerDisconnectListener(this);
