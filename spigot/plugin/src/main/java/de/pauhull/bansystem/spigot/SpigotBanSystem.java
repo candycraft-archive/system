@@ -59,7 +59,7 @@ public class SpigotBanSystem extends JavaPlugin {
         this.maintenanceMessage = ChatColor.translateAlternateColorCodes('&', config.getString("Message"));
         this.maintenancePermission = config.getString("Permission");
 
-        if (Bukkit.getServer().getClass().getPackage().getName().contains("1.13")) {
+        if (Bukkit.getVersion().contains("1.13")) {
             this.reportInventory = new de.pauhull.bansystem.spigot.v1_13_R1.ReportInventory(this);
         } else {
             this.reportInventory = new de.pauhull.bansystem.spigot.v1_8_R3.ReportInventory(this);
@@ -68,7 +68,6 @@ public class SpigotBanSystem extends JavaPlugin {
         new CopyCommand(this);
         new ClearChatCommand(this);
         new HelpCommand(this);
-        new CrashCommand(this);
         new RankCommand(this);
         new ReportCommand(this);
         new PlayerJoinListener(this);
@@ -77,6 +76,10 @@ public class SpigotBanSystem extends JavaPlugin {
         new PlayerQuitListener(this);
         new PlayerLoginListener(this);
         new PluginMessageListener(this);
+
+        if (Bukkit.getVersion().contains("1.8")) {
+            new CrashCommand(this);
+        }
 
         this.protocolManager = ProtocolLibrary.getProtocolManager();
         this.protocolManager.addPacketListener(new PacketAdapter(this, ListenerPriority.NORMAL, PacketType.Play.Client.TAB_COMPLETE) {
