@@ -30,24 +30,26 @@ public class PlaytimeTable {
         cache.put(uuid, System.currentTimeMillis());
     }
     public void logDisconnect(UUID uuid) {
-        if (cache.containsKey(uuid)) {
-            long time = cache.get(uuid);
-            cache.remove(uuid);
-            long now = System.currentTimeMillis();
-            long result = now - time;
-            ResultSet resultSet = mySQL.query("SELECT * FROM `" + TABLE + "` WHERE `uuid`='"+ uuid +"'");
-            try {
-                if (resultSet.next()) {
-                    result = result + resultSet.getLong("time");
-                    mySQL.update("UPDATE `" + TABLE + "` SET `time`='"+ result +"' WHERE `uuid`='"+ uuid +"'");
-                }else {
-                    mySQL.update("INSERT INTO `" + TABLE + "`(`id`, `uuid`, `time`) VALUES ('0','"+ uuid +"','"+ result +"')");
+        executorService.execute(() -> {
+            if (cache.containsKey(uuid)) {
+                long time = cache.get(uuid);
+                cache.remove(uuid);
+                long now = System.currentTimeMillis();
+                long result = now - time;
+                ResultSet resultSet = mySQL.query("SELECT * FROM `" + TABLE + "` WHERE `uuid`='"+ uuid +"'");
+                try {
+                    if (resultSet.next()) {
+                        result = result + resultSet.getLong("time");
+                        mySQL.update("UPDATE `" + TABLE + "` SET `time`='"+ result +"' WHERE `uuid`='"+ uuid +"'");
+                    }else {
+                        mySQL.update("INSERT INTO `" + TABLE + "`(`id`, `uuid`, `time`) VALUES ('0','"+ uuid +"','"+ result +"')");
+                    }
+                } catch (SQLException e) {
+                    e.printStackTrace();
                 }
-            } catch (SQLException e) {
-                e.printStackTrace();
             }
+        });
 
-        }
     }
     public long getPlaytime(UUID uuid) {
         long result = -1;
