@@ -1,0 +1,26 @@
+name: BanSystem
+version: 1.0
+author: pauhull
+main: de.pauhull.bansystem.bungee.BungeeBanSystem
+
+commands:
+  broadcast:
+  bc:
+  banlog:
+  ban:
+  forum:
+  ping:
+  reportbungee:
+  joinme:
+  teamchat:
+  tc:
+  ts:
+  unban:
+  kick:
+  pardon:
+  youtube:
+  yt:
+  youtuber:
+  candyshop:
+  cs:
+  discord:

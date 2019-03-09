@@ -1,0 +1,20 @@
+name: BanSystem
+author: GodTitan
+version: 1.0
+main: de.pauhull.bansystem.spigot.SpigotBanSystem
+api-version: 1.13
+
+depend: [TimoCloud]
+
+commands:
+  ban:
+  cc:
+  clearchat:
+  report:
+  rank:
+  copy:
+  help:
+  vanish:
+  crash:
+  v:
+  "?":
