@@ -38,6 +38,7 @@ public class PostLoginListener implements Listener {
         player.sendMessage(TextComponent.fromLegacyText("§c§lSHOP§f http://shop.candycraft.de"));
         player.sendMessage(TextComponent.fromLegacyText("§c§lDISCORD§f https://discord.gg/gae5E7J"));
         player.sendMessage(TextComponent.fromLegacyText("§c§lTEAMSPEAK§f candycraft.de"));
+        player.sendMessage(TextComponent.fromLegacyText("§c§lFORUM§f https://forum.candycraft.de"));
         player.sendMessage(TextComponent.fromLegacyText(" "));
         player.sendMessage(TextComponent.fromLegacyText("§f§m  §c§m  §f§m  §c§m  §f§m  §c§m  §f§m  §c§m  §f§m  §c§m  §f§m  §c§m  §f§m  §c§m  §f§m  §c§m  §f§m  §c§m  §f§m  §c§m  §f§m  §c§m  §f§m  §c§m  §f§m  §c§m  §f§m  §c§m  §f§m  "));
 

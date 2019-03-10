@@ -11,6 +11,7 @@ import de.pauhull.bansystem.common.data.table.PlaytimeTable;
 import de.pauhull.bansystem.common.util.MuteInfo;
 import de.pauhull.uuidfetcher.bungee.BungeeUUIDFetcher;
 import lombok.Getter;
+import net.md_5.bungee.api.ChatColor;
 import net.md_5.bungee.api.ProxyServer;
 import net.md_5.bungee.api.chat.TextComponent;
 import net.md_5.bungee.api.plugin.Listener;
@@ -71,7 +72,7 @@ public class BungeeBanSystem extends Plugin implements Listener {
 
         this.report = new Report(this);
         this.uuidFetcher = new BungeeUUIDFetcher();
-        this.executorService = Executors.newSingleThreadExecutor();
+        this.executorService = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors() / 2);
         this.config = copyAndLoad("config.yml", new File(getDataFolder(), "config.yml"));
 
         if (config != null) {
@@ -123,6 +124,37 @@ public class BungeeBanSystem extends Plugin implements Listener {
 
         muteTable.getAllMutes(mutes -> {
             this.mutes.addAll(mutes);
+        });
+
+        executorService.execute(() -> {
+            String[] messages = new String[] {
+                    "§dDu möchtest Coole Ränge?\n" +
+                    "&6Dann schau dochmal in unserem &cShop &6vorbei &7- &c/candyshop",
+                    "&6Wir haben auch einen §cTeamspeak &7- &c/teamspeak",
+                    "&6Schau dochmal in unserem &cForum &6vorbei &7- &c/forum",
+                    "&6Wir haben auch einen §cDiscord Server &7- &c/discord"
+            };
+            int i = 0;
+            while (true) {
+                try {
+                    Thread.sleep(300000);
+                    try {
+                        if (messages[i] != null) {
+                            ProxyServer.getInstance().broadcast(TextComponent.fromLegacyText("§a\n" +
+                                    "§e§lInfo §7» \n" +
+                                    ChatColor.translateAlternateColorCodes('&', messages[i]) +"\n" +
+                                    "§b"));
+                            i++;
+                        }else {
+                            i = 0;
+                        }
+                    }catch (ArrayIndexOutOfBoundsException e) {
+                        i = 0;
+                    }
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
         });
     }
 
