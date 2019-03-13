@@ -27,8 +27,8 @@ public class VanishCommand implements CommandExecutor {
 
     public VanishCommand(SpigotBanSystem plugin) {
         this.plugin = plugin;
-        plugin.getCommand("vanish").setExecutor(this);
-        plugin.getCommand("v").setExecutor(this);
+        plugin.getCommand("avanish").setExecutor(this);
+        plugin.getCommand("av").setExecutor(this);
     }
 
     @Override

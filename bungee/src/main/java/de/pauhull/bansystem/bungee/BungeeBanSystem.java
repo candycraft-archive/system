@@ -27,6 +27,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class BungeeBanSystem extends Plugin implements Listener {
 
@@ -121,41 +123,25 @@ public class BungeeBanSystem extends Plugin implements Listener {
         new PlayerDisconnectListener(this);
         new LoginListener(this);
         new PostLoginListener(this);
+        new ServerKickListener(this);
 
         muteTable.getAllMutes(mutes -> {
             this.mutes.addAll(mutes);
         });
 
-        executorService.execute(() -> {
-            String[] messages = new String[] {
-                    "§dDu möchtest Coole Ränge?\n" +
-                    "&6Dann schau dochmal in unserem &cShop &6vorbei &7- &c/candyshop",
-                    "&6Wir haben auch einen §cTeamspeak &7- &c/teamspeak",
-                    "&6Schau dochmal in unserem &cForum &6vorbei &7- &c/forum",
-                    "&6Wir haben auch einen §cDiscord Server &7- &c/discord"
-            };
-            int i = 0;
-            while (true) {
-                try {
-                    Thread.sleep(300000);
-                    try {
-                        if (messages[i] != null) {
-                            ProxyServer.getInstance().broadcast(TextComponent.fromLegacyText("§a\n" +
-                                    "§e§lInfo §7» \n" +
-                                    ChatColor.translateAlternateColorCodes('&', messages[i]) +"\n" +
-                                    "§b"));
-                            i++;
-                        }else {
-                            i = 0;
-                        }
-                    }catch (ArrayIndexOutOfBoundsException e) {
-                        i = 0;
-                    }
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-            }
-        });
+        String[] messages = new String[]{
+                "§dDu möchtest Coole Ränge?\n" +
+                        "&6Dann schau doch Mal in unserem &cShop &6vorbei &7- &c/candyshop",
+                "&6Wir haben auch einen §cTeamspeak &7- &c/teamspeak",
+                "&6Schau doch Mal in unserem &cForum &6vorbei &7- &c/forum",
+                "&6Wir haben auch einen §cDiscord Server &7- &c/discord"
+        };
+
+        AtomicInteger index = new AtomicInteger(0);
+        ProxyServer.getInstance().getScheduler().schedule(this, () -> {
+            String message = ChatColor.translateAlternateColorCodes('&', messages[index.getAndIncrement() % messages.length]);
+            ProxyServer.getInstance().broadcast(TextComponent.fromLegacyText(" \n§e§lInfo §7»§r\n" + message + "\n "));
+        }, 0, 300, TimeUnit.SECONDS);
     }
 
     @Override
