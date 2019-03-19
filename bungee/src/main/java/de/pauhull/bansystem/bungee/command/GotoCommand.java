@@ -23,6 +23,7 @@ public class GotoCommand extends Command {
         if (!(sender instanceof ProxiedPlayer)) {
             return;
         }
+        ProxiedPlayer player = (ProxiedPlayer) sender;
 
         if (!sender.hasPermission("system.ban")) {
             sender.sendMessage(TextComponent.fromLegacyText(Messages.BAN_PREFIX + Messages.NO_PERMISSIONS));
@@ -32,11 +33,14 @@ public class GotoCommand extends Command {
         if (args.length != 1) {
             sender.sendMessage(TextComponent.fromLegacyText(Messages.PREFIX + "§c/goto <Spieler>"));
             return;
-        } else if (ProxyServer.getInstance().getPlayer(args[0]) != null) {
-            ProxiedPlayer player = (ProxiedPlayer) sender;
-            ProxiedPlayer t = ProxyServer.getInstance().getPlayer(args[0]);
-            player.connect(t.getServer().getInfo());
-            player.sendMessage(TextComponent.fromLegacyText(Messages.PREFIX + "Du wurdest auf den Server von §e" + t.getName() + "§7 verschoben!"));
+        }
+
+        if (ProxyServer.getInstance().getPlayer(args[0]) != null) {
+            ProxiedPlayer target = ProxyServer.getInstance().getPlayer(args[0]);
+            player.connect(target.getServer().getInfo());
+            player.sendMessage(TextComponent.fromLegacyText(Messages.PREFIX + "Du wurdest auf den Server von §e" + target.getName() + "§7 verschoben!"));
+        } else {
+            player.sendMessage(TextComponent.fromLegacyText(Messages.PREFIX + "§cDieser Spieler ist nicht online"));
         }
 
     }

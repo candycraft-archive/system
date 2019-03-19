@@ -24,7 +24,7 @@ public class BroadcastCommand extends Command {
     @Override
     public void execute(CommandSender sender, String[] args) {
 
-        if (!sender.hasPermission("system.bc")) {
+        if (!sender.hasPermission("system.broadcast")) {
             sender.sendMessage(TextComponent.fromLegacyText(Messages.PREFIX + Messages.NO_PERMISSIONS));
             return;
         }

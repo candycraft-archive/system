@@ -88,44 +88,46 @@ public class MuteCommand extends Command {
             final UUID finalMutedBy = mutedBy;
             final long finalTime = time;
             plugin.getMutes().removeIf(muteInfo -> muteInfo.getUuid().equals(uuid));
-            plugin.getMuteTable().mute(uuid, mutedBy, time, (muteId, secretKey) -> {
-                MuteInfo info = new MuteInfo(uuid, muteId, finalTime, finalMutedBy);
+            plugin.getMuteTable().mute(uuid, mutedBy, time, muteId -> {
+                MuteInfo info = new MuteInfo(uuid, muteId, finalTime, finalMutedBy, System.currentTimeMillis());
                 plugin.getMutes().add(info);
                 //sender.sendMessage(TextComponent.fromLegacyText(Messages.BAN_PREFIX + "§cGeheimer Schlüssel: §e" + secretKey + "§8(md5: " + HashGenerator.generateHexMd5Hash(secretKey)));
-            });
 
-            String selfMessage = Messages.BAN_PREFIX + "§cDu wurdest";
-            String message = Messages.BAN_PREFIX + "§e" + sender.getName() + "§c hat §e" + name;
-            if (time == -1) {
-                message += "§4 PERMANENT";
-                selfMessage += "§4 PERMANENT";
-            } else {
-                long remaining = time - System.currentTimeMillis();
-                long days = (long) Math.floor((double) remaining / (double) TimeUnit.DAYS.toMillis(1));
-                remaining = remaining % TimeUnit.DAYS.toMillis(1);
-                long hours = (long) Math.floor((double) remaining / (double) TimeUnit.HOURS.toMillis(1));
-                remaining = remaining % TimeUnit.HOURS.toMillis(1);
-                long minutes = (long) Math.floor((double) remaining / (double) TimeUnit.MINUTES.toMillis(1));
+                String selfMessage = Messages.BAN_PREFIX + "§cDu wurdest";
+                String message = Messages.BAN_PREFIX + "§e" + sender.getName() + "§c hat §e" + name;
+                if (finalTime == -1) {
+                    message += "§4 PERMANENT";
+                    selfMessage += "§4 PERMANENT";
+                } else {
+                    long remaining = finalTime - System.currentTimeMillis() + 1000;
+                    long days = (long) Math.floor((double) remaining / (double) TimeUnit.DAYS.toMillis(1));
+                    remaining = remaining % TimeUnit.DAYS.toMillis(1);
+                    long hours = (long) Math.floor((double) remaining / (double) TimeUnit.HOURS.toMillis(1));
+                    remaining = remaining % TimeUnit.HOURS.toMillis(1);
+                    long minutes = (long) Math.floor((double) remaining / (double) TimeUnit.MINUTES.toMillis(1));
 
-                String addition = "§c für §e" + days + "§c Tag" + (days != 1 ? "e" : "") + ", §e" + hours + "§c Stunde" + (hours != 1 ? "n" : "") + ", §e" + minutes + "§c Minute" + (minutes != 1 ? "n" : "");
-                message += addition;
-                selfMessage += addition;
-            }
-            message += "§c gemutet!";
-            selfMessage += "§c gemutet!";
-
-            ProxiedPlayer player = ProxyServer.getInstance().getPlayer(uuid);
-            if (player != null) {
-                player.sendMessage(TextComponent.fromLegacyText(selfMessage));
-            }
-
-            for (ProxiedPlayer all : ProxyServer.getInstance().getPlayers()) {
-                if (all.getUniqueId().equals(mutedBy)
-                        || (all.hasPermission("teamchat.use") && !TeamChatCommand.getDisabled().contains(all.getName()))) {
-
-                    all.sendMessage(TextComponent.fromLegacyText(message));
+                    String addition = "§c für §e" + days + "§c Tag" + (days != 1 ? "e" : "") + ", §e" + hours + "§c Stunde" + (hours != 1 ? "n" : "") + ", §e" + minutes + "§c Minute" + (minutes != 1 ? "n" : "");
+                    message += addition;
+                    selfMessage += addition;
                 }
-            }
+                message += "§c gemutet!";
+                selfMessage += "§c gemutet!";
+
+                ProxiedPlayer player = ProxyServer.getInstance().getPlayer(uuid);
+                if (player != null) {
+                    player.sendMessage(TextComponent.fromLegacyText(selfMessage));
+                    player.sendMessage(TextComponent.fromLegacyText(Messages.BAN_PREFIX + "§cDein Chatlog: §ehttps://candycraft.de/mute/?id=" + info.getMuteId()));
+                }
+
+                for (ProxiedPlayer all : ProxyServer.getInstance().getPlayers()) {
+                    if (all.getUniqueId().equals(finalMutedBy)
+                            || (all.hasPermission("teamchat.use") && !TeamChatCommand.getDisabled().contains(all.getName()))) {
+
+                        all.sendMessage(TextComponent.fromLegacyText(message));
+                        all.sendMessage(TextComponent.fromLegacyText(Messages.BAN_PREFIX + "§cChatlog: §ehttps://candycraft.de/mute/?id=" + info.getMuteId()));
+                    }
+                }
+            });
         });
     }
 

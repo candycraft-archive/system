@@ -12,13 +12,6 @@
     <artifactId>bansystem-spigot-plugin</artifactId>
 
     <dependencies>
-        <dependency>
-            <groupId>com.comphenix.protocol</groupId>
-            <artifactId>ProtocolLib-API</artifactId>
-            <version>4.2.1</version>
-            <scope>system</scope>
-            <systemPath>${project.basedir}/lib/ProtocolLib.jar</systemPath>
-        </dependency>
 
         <dependency>
             <groupId>ru.tehkode</groupId>

@@ -19,6 +19,15 @@
     </repositories>
 
     <dependencies>
+        <!-- BPB -->
+        <dependency>
+            <groupId>me.philipsnostrum</groupId>
+            <artifactId>bungeepexbridge</artifactId>
+            <version>1.9.1</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/lib/BungeePexBridge.jar</systemPath>
+        </dependency>
+
         <!-- BungeeCord -->
         <dependency>
             <groupId>net.md-5</groupId>

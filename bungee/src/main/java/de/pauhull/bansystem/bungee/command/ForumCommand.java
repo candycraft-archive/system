@@ -9,12 +9,8 @@ import net.md_5.bungee.api.plugin.Command;
 
 public class ForumCommand extends Command {
 
-    private BungeeBanSystem plugin;
-
     public ForumCommand(BungeeBanSystem plugin) {
         super("forum");
-        this.plugin = plugin;
-
         ProxyServer.getInstance().getPluginManager().registerCommand(plugin, this);
     }
 

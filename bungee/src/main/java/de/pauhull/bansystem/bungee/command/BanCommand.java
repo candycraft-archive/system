@@ -79,8 +79,9 @@ public class BanCommand extends Command {
                     plugin.getUuidFetcher().fetchNameAsync(uuid, name -> {
                         sender.sendMessage(TextComponent.fromLegacyText(Messages.BAN_PREFIX + "Du hast §e" + name + "§7 gebannt! Grund: §e" + reasonFinal.getReason()));
                         for (ProxiedPlayer all : ProxyServer.getInstance().getPlayers()) {
+                            if (all == sender) continue;
                             if (all.hasPermission("teamchat.use") && !TeamChatCommand.getDisabled().contains(all.getName())) {
-                                all.sendMessage(TextComponent.fromLegacyText(Messages.BAN_PREFIX+sender.getName() + " hat §e" + bannedPlayer.getName() + "§7 für §4" + reasonFinal.getReason() +"§7 gebannt"));
+                                all.sendMessage(TextComponent.fromLegacyText(Messages.BAN_PREFIX + "§e" + sender.getName() + "§c hat §e" + name + "§c für §4" + reasonFinal.getReason() + "§c gebannt!"));
                             }
                         }
                         if (bannedPlayer != null) {

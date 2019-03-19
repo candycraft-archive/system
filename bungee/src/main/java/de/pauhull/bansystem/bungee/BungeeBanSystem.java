@@ -4,10 +4,7 @@ import de.pauhull.bansystem.bungee.command.*;
 import de.pauhull.bansystem.bungee.listener.*;
 import de.pauhull.bansystem.bungee.util.Report;
 import de.pauhull.bansystem.common.data.MySQL;
-import de.pauhull.bansystem.common.data.table.BanLogTable;
-import de.pauhull.bansystem.common.data.table.BanTable;
-import de.pauhull.bansystem.common.data.table.MuteTable;
-import de.pauhull.bansystem.common.data.table.PlaytimeTable;
+import de.pauhull.bansystem.common.data.table.*;
 import de.pauhull.bansystem.common.util.MuteInfo;
 import de.pauhull.uuidfetcher.bungee.BungeeUUIDFetcher;
 import lombok.Getter;
@@ -60,6 +57,9 @@ public class BungeeBanSystem extends Plugin implements Listener {
     private BanLogTable banLogTable;
 
     @Getter
+    private ChatLogTable chatLogTable;
+
+    @Getter
     private BungeeUUIDFetcher uuidFetcher;
 
     @Getter
@@ -67,6 +67,12 @@ public class BungeeBanSystem extends Plugin implements Listener {
 
     @Getter
     private boolean maintenance;
+
+    @Getter
+    private String maintenancePermission;
+
+    @Getter
+    private String maintenanceMessage;
 
     @Override
     public void onEnable() {
@@ -79,6 +85,8 @@ public class BungeeBanSystem extends Plugin implements Listener {
 
         if (config != null) {
             this.maintenance = config.getBoolean("Maintenance");
+            this.maintenancePermission = config.getString("Permission");
+            this.maintenanceMessage = ChatColor.translateAlternateColorCodes('&', config.getString("Message"));
 
             this.mySQL = new MySQL(config.getString("MySQL.Host"),
                     config.getString("MySQL.Port"),
@@ -98,6 +106,7 @@ public class BungeeBanSystem extends Plugin implements Listener {
         this.banLogTable = new BanLogTable(mySQL, executorService);
         this.banTable = new BanTable(mySQL, executorService, banLogTable);
         this.playtimeTable = new PlaytimeTable(mySQL, executorService);
+        this.chatLogTable = new ChatLogTable(mySQL, executorService);
 
         new BanLogCommand(this);
         new BroadcastCommand(this);
@@ -117,6 +126,8 @@ public class BungeeBanSystem extends Plugin implements Listener {
         new DiscordCommand(this);
         new GotoCommand(this);
         new PlaytimeCommand(this);
+        new MaintenanceCommand(this);
+        new MuteInfoCommand(this);
 
         new ChatListener(this);
         new ProxyPingListener(this);
@@ -167,6 +178,16 @@ public class BungeeBanSystem extends Plugin implements Listener {
         } catch (IOException e) {
             e.printStackTrace();
             return null;
+        }
+    }
+
+    public void setMaintenance(boolean maintenance) {
+        this.maintenance = maintenance;
+        this.config.set("Maintenance", maintenance);
+        try {
+            ConfigurationProvider.getProvider(YamlConfiguration.class).save(config, new File(getDataFolder(), "config,yml"));
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 

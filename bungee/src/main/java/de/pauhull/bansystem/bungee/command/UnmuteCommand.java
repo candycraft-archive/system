@@ -74,7 +74,7 @@ public class UnmuteCommand extends Command {
                     if (all.getUniqueId().equals(mutedBy)
                             || (all.hasPermission("teamchat.use") && !TeamChatCommand.getDisabled().contains(all.getName()))) {
 
-                        all.sendMessage(TextComponent.fromLegacyText(Messages.BAN_PREFIX + "§e" + name + "§a wurde von §e" + sender.getName() + "§a entmutet!"));
+                        all.sendMessage(TextComponent.fromLegacyText(Messages.BAN_PREFIX + "§e" + name + "§a wurde von §e" + sender.getName() + "§2 entmutet§a!"));
                     }
                 }
 

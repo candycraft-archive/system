@@ -6,6 +6,6 @@ MySQL:
   User: "root"
   Password: ""
 
-Maintenance: True
+Maintenance: False
 Permission: bansystem.maintenance
-Message: "&dCandyCraft &8» &7Der Server befindet sich in &cWartungsarbeiten&7."
+Message: "&d&lCandyCraft&8.&dde\n\n&8» &cDer Server befindet sich in &4Wartungsarbeiten&c."

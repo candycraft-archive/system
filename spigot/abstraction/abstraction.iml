@@ -14,6 +14,8 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" scope="PROVIDED" name="Maven: org.spigotmc:spigot:1.8.8-R0.1-SNAPSHOT" level="project" />
     <orderEntry type="module" module-name="common" />
+    <orderEntry type="library" name="Maven: info.debatty:java-string-similarity:1.1.0" level="project" />
+    <orderEntry type="library" name="Maven: net.jcip:jcip-annotations:1.0" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Maven: cloud.timo.TimoCloud:TimoCloud-API:5.2.0" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Maven: org.projectlombok:lombok:1.16.16" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Maven: de.pauhull:proxy-communication:1.0-SNAPSHOT" level="project" />
