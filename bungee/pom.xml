@@ -16,6 +16,10 @@
             <id>bungeecord-repo</id>
             <url>https://oss.sonatype.org/content/repositories/snapshots</url>
         </repository>
+        <repository>
+            <id>candycraft-repo</id>
+            <url>${archiva.URL}</url>
+        </repository>
     </repositories>
 
     <dependencies>

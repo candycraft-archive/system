@@ -145,7 +145,8 @@ public class BungeeBanSystem extends Plugin implements Listener {
                         "&6Dann schau doch Mal in unserem &cShop &6vorbei &7- &c/candyshop",
                 "&6Wir haben auch einen §cTeamspeak &7- &c/teamspeak",
                 "&6Schau doch Mal in unserem &cForum &6vorbei &7- &c/forum",
-                "&6Wir haben auch einen §cDiscord Server &7- &c/discord"
+                "&6Wir haben auch einen §cDiscord Server &7- &c/discord",
+                "&6Wir suchen derzeit noch &9Supporter &7- &c/forum"
         };
 
         AtomicInteger index = new AtomicInteger(0);
