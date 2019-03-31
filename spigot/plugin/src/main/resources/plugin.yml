@@ -4,6 +4,7 @@ version: 1.0
 main: de.pauhull.bansystem.spigot.SpigotBanSystem
 api-version: 1.13
 
+softdepend: [NickAPI]
 depend: [TimoCloud]
 
 commands:
